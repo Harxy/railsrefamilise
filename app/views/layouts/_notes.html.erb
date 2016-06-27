@@ -1,0 +1,54 @@
+<% id_count = 0 %>
+<div class='jumbotron'>
+  <% if @notes[0] == nil %>
+    <div id="note<%= id_count %>" >
+      <h4> No mems to view today </h4>
+      <p> Feel free to add more below </p>
+    </div>
+
+  <% else %>
+
+    <% @notes.each_with_index do |note, i| %>
+      <% label = "warning"
+         case note.priority
+         when 2
+           label = "info"
+         when 3
+           label = "success"
+         end %>
+
+      <div id="note<%= i %>" <% if i != 0%> style="display:none" <%end%>>
+        <p></span> <span class="label label-info"><%= note.title %></span>
+      <span class="pull-right"> <span class="label label-<%= label %>"> 
+        <% if note.priority != 0 %>
+          <%= note.priority_in_words %>
+        <% else %>
+          <%= note.date_show.to_formatted_s(:short) %>
+        <% end %>
+      </p>
+      <p><%= note.body %></p>
+      <p class='text-muted'> Mem Last viewed: <%= note.date_seen.to_formatted_s(:short) %> 
+    </p>
+    <form action="notes/<%= note.id %>/seen" data-remote='true'>
+      <button class="btn btn-success" onclick="advanceItem()"> Seen it </button>
+    </form>
+      </div>
+      <% id_count += 1 %>
+
+    <% end %>
+    <div id="note<%= id_count %>" style="display:none" >
+      <h3> No more mems left for today </h3>
+      <a class='btn btn-primary' href='/notes'> MOAR MEMS </a>
+      <p> Feel free to add more below </p>
+    </div>
+  <% end %>
+
+</div>
+<script>
+var i = 0
+function advanceItem() {
+  $('#note' + i).hide("slow");
+  $('#note' + (i+1)).show("slow");
+  i++;
+}
+</script>

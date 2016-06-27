@@ -1,0 +1,40 @@
+.container {
+  max-width: 800px
+}
+
+.brand {
+  height: 50px;
+  width: 50px;
+}
+
+.icon {
+  padding-top: 0px;
+  padding-left: 30px;
+}
+
+.btn {
+  margin-right: 3px;
+  margin-bottom: 10px;
+}
+
+.jumbotron {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 0px;
+  padding-right: 0px;
+}
+
+.jumbotron p {
+  margin-bottom: 0px;
+  margin-top: 10px;
+}
+
+.text-muted {
+  font-size: 12px !important;
+  margin-bottom: 10px !important;
+  margin-top: 0px !important;
+}
+
+#textarea {
+  height: 12em;
+}
