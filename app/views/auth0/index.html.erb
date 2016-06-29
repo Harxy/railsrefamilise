@@ -10,7 +10,7 @@ var lock = new Auth0Lock('SdG5l9TMqljeFlnkZfI4yuT45rCQFfIk', 'memtank.eu.auth0.c
 
 lock.show({
   container: 'root'
-    , callbackURL: 'http://localhost:3000/auth/auth0/callback'
+    , callbackURL: '/auth/auth0/callback'
     , responseType: 'code'
     , authParams: {
       scope: 'openid email'  
