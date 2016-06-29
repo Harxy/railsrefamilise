@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   resources :auth0
   resources :notes
   resources :history
-  get 'notes/:id/seen' => 'notes#seen'
-  get 'notes/:id/remove' => 'notes#delete_from_view'
+  get '/notes/:id/seen' => 'notes#seen'
+  get '/notes/:id/remove' => 'notes#delete_from_view'
   get '/' => "notes#index"
   get '/blog' => "blogs#index"
   # The priority is based upon order of creation: first created -> highest priority.

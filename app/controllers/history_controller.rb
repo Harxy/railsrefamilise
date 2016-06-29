@@ -10,4 +10,10 @@ class HistoryController < ApplicationController
   def current_user
     session[:userinfo]['uid']
   end
+
+  def logged_in_using_omniauth?
+    unless session[:userinfo].present?
+      redirect_to '/auth0'
+    end
+  end
 end

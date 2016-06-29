@@ -13,6 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'react-rails', '~> 1.0'
 gem 'omniauth', '~> 1.3'
 gem 'omniauth-auth0', '~> 1.4'
+gem 'rails_12factor'
 
 group :development, :test do
   gem 'byebug'
