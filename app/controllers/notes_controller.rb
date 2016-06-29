@@ -1,6 +1,7 @@
 class NotesController < ApplicationController
   before_action :logged_in_using_omniauth?
   skip_before_filter  :verify_authenticity_token
+  before_filter :set_cache_headers
   before_action :get_notes, :setup_dates
 
   def create
@@ -55,5 +56,11 @@ class NotesController < ApplicationController
     unless session[:userinfo].present?
       redirect_to '/auth0'
     end
+  end
+
+  def set_cache_headers
+    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
   end
 end
