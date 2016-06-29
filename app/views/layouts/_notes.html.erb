@@ -32,13 +32,13 @@
         <p><%= note.body %></p>
         <p class='text-muted'> Mem Last viewed: <%= note.date_seen.to_formatted_s(:short) %> 
       </p>
-      <form action="notes/<%= note.id %>/seen" data-remote='true' class="inline">
+      <form action="/notes/<%= note.id %>/seen" data-remote='true' class="inline">
         <button class="btn btn-success" onclick="advanceItem()"> Seen it </button>
       </form>
       <form data-remote='true' class="inline">
         <button class="btn btn-info" onclick="advanceItem()"> Show it again soon </button>
       </form>
-      <form action='notes/<%= note.id %>/remove' data-remote='true' class="inline">
+      <form action='/notes/<%= note.id %>/remove' data-remote='true' class="inline">
         <button class="btn btn-danger" onclick="advanceItem()">Delete mem</button>
       </form>
       </div>

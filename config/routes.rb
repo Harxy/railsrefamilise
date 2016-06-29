@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/auth/logout' => "auth0#logout"
   resources :auth0
   resources :notes
+  resources :history
   get 'notes/:id/seen' => 'notes#seen'
   get 'notes/:id/remove' => 'notes#delete_from_view'
   get '/' => "notes#index"
