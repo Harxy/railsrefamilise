@@ -23,7 +23,7 @@ class Auth0Controller < ApplicationController
   def add_welcome_mems
     date_time = Date.yesterday
     note2 = Note.new(:title => "Welcome",
-                     :body => "Welcome to MemTank. This is an example note to help you get going. Click Seen it! below to continue.",
+                     :body => "Welcome to MemTank. This is an example note to help you get going.\n Click Seen it! below to continue.",
                      :priority => 3,
                      :date_seen => date_time,
                      :user => session[:userinfo]['uid'])
@@ -33,7 +33,7 @@ class Auth0Controller < ApplicationController
                      :date_seen => date_time,
                      :user => session[:userinfo]['uid'])
     note4 = Note.new(:title => "Welcome",
-                     :body => "When creating your own notes, you can either prioritize them, based on how soon you want to see them again, or by time period until you want to see them again (Tomorrow, Next Week.. etc). I won't bore you with exactly how it works, but a High priority mem will be reshown to you roughly three times as often as a low priority mem.",
+                     :body => "When creating your own notes, you can either prioritize them, based on how soon you want to see them again, or by time period (Tomorrow, Next Week.. etc). \n I won't bore you with exactly how it works, but a High priority mem will be reshown to you roughly three times as often as a low priority mem.",
                      :priority => 2,
                      :date_seen => date_time,
                      :user => session[:userinfo]['uid'])
