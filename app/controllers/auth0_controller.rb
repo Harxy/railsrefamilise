@@ -13,7 +13,7 @@ class Auth0Controller < ApplicationController
 
   def logout
     session[:userinfo] = nil
-    redirect_to "https://memtank.eu.auth0.com/v2/logout?federated?returnTo=http://localhost:300://memtank.eu.auth0.com/v2/logout?federated?returnTo=http://memtank.herokuapp.com"
+    redirect_to "https://memtank.eu.auth0.com/v2/logout?federated?returnTo=http://memtank.herokuapp.com"
   end
 
   def empty_database?
