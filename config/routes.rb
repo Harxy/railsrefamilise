@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
+
+  get "/auth/auth0/callback" => "auth0#callback"
+  get "/auth/failure" => "auth0#failure"
+  get '/auth/logout' => "auth0#logout"
+  resources :auth0
   resources :notes
   get 'notes/:id/seen' => 'notes#seen'
+  get 'notes/:id/remove' => 'notes#delete_from_view'
+  get '/' => "notes#index"
+  get '/blog' => "blogs#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
