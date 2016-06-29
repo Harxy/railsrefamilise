@@ -2,6 +2,21 @@
   max-width: 800px
 }
 
+.centre {
+  text-align: center;
+}
+
+.image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align:center;
+}
+
+p {
+  text-align: left;
+}
+
 .brand {
   height: 50px;
   width: 50px;
