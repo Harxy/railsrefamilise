@@ -38,6 +38,10 @@ class Note < ActiveRecord::Base
     note
   end
 
+  def label_array
+    title.split(',')
+  end
+
   def priority_in_words
     case priority
     when 1

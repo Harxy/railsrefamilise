@@ -18,7 +18,10 @@
       end %>
 
       <div id="note<%= i %>" <% if i != 0%> style="display:none" <%end%>>
-        <p></span> <span class="label label-info"><%= note.title %></span>
+        <p>
+        <% note.label_array.each do |tag| %>
+        <span class="label label-info"><%= tag %></span>
+        <% end %>
       <span class="pull-right"> <span class="label label-<%= label %>"> 
           <% if note.priority != 0 %>
             <%= note.priority_in_words %>
