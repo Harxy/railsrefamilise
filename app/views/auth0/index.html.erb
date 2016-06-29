@@ -4,13 +4,16 @@
 </div>
 <script src="https://cdn.auth0.com/js/lock-9.1.min.js"></script>
 <script>
-
+<% url = "http://localhost:3000" %>
+<% if Rails.env.production? %>
+  <% url = "http://memtank.herokuapp.com" %>
+<% end %>
 var lock = new Auth0Lock('SdG5l9TMqljeFlnkZfI4yuT45rCQFfIk', 'memtank.eu.auth0.com');
 
 
 lock.show({
   container: 'root'
-    , callbackURL: '/auth/auth0/callback'
+    , callbackURL:  '<%= url %>/auth/auth0/callback'
     , responseType: 'code'
     , authParams: {
       scope: 'openid email'  

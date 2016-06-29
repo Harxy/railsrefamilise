@@ -10,19 +10,17 @@
       </button>
       <a class="navbar-brand icon" href="#"><img alt="Brand" class="brand" src="/images/icon.png">
       </a>
-      <a class="navbar-brand" href="/notes">
-        MemTank
-      </a>
+      <%= link_to 'MemTank', '/notes', class: "navbar-brand" %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="/blog">Blog</a></li>
+        <li><%= link_to 'Blog', '/blog' %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if session[:userinfo] %>
-        <li><a href="/auth/logout">Logout <%= session[:userinfo]['extra']['raw_info']['nickname'] %></a>
+          <li><%= link_to 'Logout ' + session[:userinfo]['extra']['raw_info']['nickname'], "/auth/logout" %></li>
         <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
