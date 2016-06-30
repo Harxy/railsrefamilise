@@ -53,3 +53,11 @@
   <% end %>
 
 </div>
+<script>
+var i = 0
+function advanceItem() {
+  $('#note' + i).hide("slow");
+  $('#note' + (i+1)).show("slow");
+  i++;
+}
+</script>
