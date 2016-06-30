@@ -2,7 +2,7 @@ class NotesController < ApplicationController
   before_action :logged_in_using_omniauth?
   skip_before_filter  :verify_authenticity_token
   before_filter :set_cache_headers
-  before_action :get_notes, :setup_dates, :get_labels
+  before_action :get_notes, :setup_dates
 
   def create
     @note = Note.new(note_params)
