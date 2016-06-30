@@ -34,7 +34,7 @@
     </div>
     <script>
 $.noConflict();
-$( document ).ready(function() {
+$( document ).on('ready page:load', function() {
   $('#tokenfield').tokenfield({
     delimiter: [',', ' '],
     limit: 3,
