@@ -29,7 +29,7 @@
             <%= note.date_show.to_formatted_s(:short) %>
           <% end %>
         </p>
-        <p><%= note.body %></p>
+        <p><%= raw note.body.gsub(/\n/, '<br />') %></p>
         <p class='text-muted'> Mem Last viewed: <%= note.date_seen.to_formatted_s(:short) %> 
       </p>
       <form action="/notes/<%= note.id %>/seen" data-remote='true' class="inline">
