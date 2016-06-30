@@ -47,7 +47,7 @@
     <% end %>
     <div id="note<%= id_count %>" style="display:none" >
       <h3> Seen all your current mems </h3>
-      <a class='btn btn-info' href='/notes' > GET MOAR MEMS </a>
+      <a class='btn btn-info' onclick='location.reload()' > GET MOAR MEMS </a>
       <p class="no-top"> Feel free to add more below </p>
     </div>
   <% end %>
@@ -55,6 +55,9 @@
 </div>
 <script>
 var i = 0
+$(document).on('ready page:load', function() {
+  i = 0
+});
 function advanceItem() {
   $('#note' + i).hide("slow");
   $('#note' + (i+1)).show("slow");

@@ -19,6 +19,7 @@ class NotesController < ApplicationController
     note = Note.find(params["id"])
     note.update_attributes(:date_show => nil,
                            :priority => 0)
+    render nothing: true
   end
 
   private

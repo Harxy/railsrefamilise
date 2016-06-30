@@ -14,6 +14,7 @@ gem 'react-rails', '~> 1.0'
 gem 'omniauth', '~> 1.3'
 gem 'omniauth-auth0', '~> 1.4'
 gem 'rails_12factor'
+gem 'jquery-turbolinks'
 
 group :development, :test do
   gem 'byebug'
