@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/notes/:id/remove' => 'notes#delete_from_view'
   get '/' => "notes#index"
   get '/blog' => "blogs#index"
+  get '/user_info/seen_it' => "user_info#seen_it"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

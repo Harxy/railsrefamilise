@@ -1,1 +1,10 @@
-
+<% @all_tags.each do |tag| %>
+  <h4> <span class="label label-info"> <%= tag %> </span> </h4>
+  <% @hash[tag].each do |values| %>
+    <% values.each do |note| %>
+      <div class='jumbotron'>
+      <%= raw auto_link(note.body.gsub(/\n/, '<br />')) %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

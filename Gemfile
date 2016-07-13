@@ -15,9 +15,12 @@ gem 'omniauth', '~> 1.3'
 gem 'omniauth-auth0', '~> 1.4'
 gem 'rails_12factor'
 gem 'jquery-turbolinks'
+gem 'acts-as-taggable-on'
+gem 'rails_autolink'
 
 group :development, :test do
   gem 'byebug'
+  gem 'pry'
 end
 
 group :development do

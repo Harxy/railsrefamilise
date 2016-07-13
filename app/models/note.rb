@@ -1,5 +1,6 @@
 class Note < ActiveRecord::Base
-  validates :title, presence: true
+  attr_accessor :tag_list
+  acts_as_taggable_on :tags
   validates :body, length: { maximum: 500 }
 
   def self.ready_to_show(user)
@@ -8,10 +9,31 @@ class Note < ActiveRecord::Base
     date_notes + priority_notes
   end
 
+  def self.all_notes(user)
+    priority_notes = get_all_priority_notes(user)
+    date_notes = get_all_date_notes(user)
+    date_notes + priority_notes
+  end
+
   def showing_order
     priority * time_since_seen
   end
 
+  def self.get_all_priority_notes(user)
+    note = Note.where(user: user)
+      .sort_by(&:showing_order).reverse
+      .reject{ |n| n['priority'] == 0 }
+    return [] if !note
+    note
+  end
+
+  def self.get_all_date_notes(user)
+    note = Note.where(user: user)
+      .where.not(date_show: nil)
+    return [] if !note
+    note
+  end
+    
   def time_since_seen
     Date.today.mjd - date_seen.mjd
   end
@@ -36,10 +58,6 @@ class Note < ActiveRecord::Base
       .where("date_show <= ?", Date.today)
     return [] if !note
     note
-  end
-
-  def label_array
-    title.split(',')
   end
 
   def priority_in_words

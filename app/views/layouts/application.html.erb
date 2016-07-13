@@ -24,14 +24,6 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.0/themes/smoothness/jquery-ui.css" />
     <!-- Latest compiled and minified JavaScript -->
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
-  </head>
-
-  <body>
-    <%= render '/layouts/navbar' %>
-    <div class='container'>
-      <%= yield %>
-    </div>
     <script>
 $.noConflict();
 $( document ).on('ready page:load', function() {
@@ -47,5 +39,13 @@ $( document ).on('ready page:load', function() {
   })
 });
     </script>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <%= render '/layouts/navbar' %>
+    <div class='container'>
+      <%= yield %>
+    </div>
   </body>
 </html>

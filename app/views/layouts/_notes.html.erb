@@ -2,7 +2,8 @@
 <div class='jumbotron'>
   <% if @notes[0] == nil %>
     <div id="note<%= id_count %>" >
-      <h4> No mems to view today </h4>
+      <h4> No mems to view right now! </h4>
+      <p> Come back later to view more mems </p>
       <p> Feel free to add more below </p>
     </div>
 
@@ -19,7 +20,7 @@
 
       <div id="note<%= i %>" <% if i != 0%> style="display:none" <%end%>>
         <p>
-        <% note.label_array.each do |tag| %>
+        <% note.tags.each do |tag| %>
         <span class="label label-info"><%= tag %></span>
         <% end %>
       <span class="pull-right"> <span class="label label-<%= label %>"> 
@@ -29,7 +30,7 @@
             <%= note.date_show.to_formatted_s(:short) %>
           <% end %>
         </p>
-        <p><%= raw note.body.gsub(/\n/, '<br />') %></p>
+        <p><%= raw auto_link(note.body.gsub(/\n/, '<br />')) %></p>
         <p class='text-muted'> Mem Last viewed: <%= note.date_seen.to_formatted_s(:short) %> 
       </p>
       <form action="/notes/<%= note.id %>/seen" data-remote='true' class="inline">
@@ -45,10 +46,10 @@
       <% id_count += 1 %>
 
     <% end %>
-    <div id="note<%= id_count %>" style="display:none" >
-      <h3> Seen all your current mems </h3>
-      <a class='btn btn-info' onclick='location.reload()' > GET MOAR MEMS </a>
-      <p class="no-top"> Feel free to add more below </p>
+    <div class="final" id="note<%= id_count %>" style="display:none" >
+      <h4> Seen all your current mems </h4>
+      <p class="no-top">Come back in a little while for more Mems!</p>
+      <p> Or feel free to add some new one's below </p>
     </div>
   <% end %>
 
@@ -62,5 +63,8 @@ function advanceItem() {
   $('#note' + i).hide("slow");
   $('#note' + (i+1)).show("slow");
   i++;
+  if ($('.final').is(':visible')){
+    $.get('/user_info/seen_it');
+  }
 }
 </script>

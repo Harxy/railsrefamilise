@@ -1,11 +1,13 @@
 class NotesController < ApplicationController
-  before_action :logged_in_using_omniauth?
+  before_action :logged_in_using_omniauth?, :get_user_info
   skip_before_filter  :verify_authenticity_token
   before_filter :set_cache_headers
-  before_action :get_notes, :setup_dates
+  before_action :get_notes, :setup_dates, :setup_tags
 
   def create
     @note = Note.new(note_params)
+    tag_params = params['tag_list'].downcase
+    @user_info.tag(@note, :with => tag_params, :on => :tags)
     @note.save
     redirect_to '/notes'
   end
@@ -25,20 +27,32 @@ class NotesController < ApplicationController
   private
 
   def note_params
-    params.permit(:title,
-                  :priority,
+    params.permit(:priority,
                   :date_show,
                   :body)
       .merge(:date_seen => date_today)
       .merge(:user => current_user)
   end
 
+  def show_mems?
+    @user_info.seen_mem_time <= (DateTime.now - 1.hour)
+  end
+
   def get_notes
-    @notes = Note.ready_to_show(current_user)
+    show_mems? ? @notes = Note.ready_to_show(current_user) : @notes = []
+  end
+
+  def get_user_info
+    @user_info = UserInfo.where(:user_id => current_user).first
+  end
+
+  def setup_tags
+    @all_tags = @user_info.owned_tags.sort_by {|t| t.name }
+    @all_tags_names = @all_tags.map{ |t| t.name }
   end
 
   def current_user
-    session[:userinfo]['uid']
+    session[:userinfo]['extra']['raw_info']['identities'][0]['user_id']
   end
 
   def date_today

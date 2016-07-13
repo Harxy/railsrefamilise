@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: MyString
+  new_user: false
+  seen_mems: false
+
+two:
+  user_id: MyString
+  new_user: false
+  seen_mems: false
