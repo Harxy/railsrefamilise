@@ -17,6 +17,14 @@ p {
   text-align: left;
 }
 
+ul {
+  text-align:left;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
 .brand {
   height: 50px;
   width: 50px;
