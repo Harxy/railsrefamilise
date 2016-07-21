@@ -6,21 +6,21 @@
       <% if @tomorrow_dates[0] %>
         <div class="list-group">
           <% @tomorrow_dates.each do |date| %>
-            <a class="list-group-item list-group-item-warning"><button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close"><span onclick="deleteDate(this, <%= date.id %>)" class="glyphicon glyphicon-trash" aria-hidden="true"></span></button><span class="label label-default pull-left">tomorrow</span><%= date.body %></a>
+            <a class="list-group-item list-group-item-warning"><button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close"><span onclick="deleteDate(this, <%= date.id %>)" class="glyphicon glyphicon-trash" aria-hidden="true"></span></button><span class="label label-default pull-left date-label">tomorrow</span><%= date.body %></a>
           <% end %>
         </div>
       <% end %>
       <% if @today_dates[0] %>
         <div class="list-group">
           <% @today_dates.each do |date| %>
-            <a class="list-group-item list-group-item-success"><button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close"><span onclick="deleteDate(this, <%= date.id %>)" class="glyphicon glyphicon-trash" aria-hidden="true"></span></button><span class="label label-default pull-left">today</span><%= date.body %></a>
+            <a class="list-group-item list-group-item-success"><button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close"><span onclick="deleteDate(this, <%= date.id %>)" class="glyphicon glyphicon-trash" aria-hidden="true"></span></button><span class="label label-default pull-left date-label">today</span><%= date.body %></a>
           <% end %>
         </div>
       <% end %>
       <% if @late_dates[0] %>
         <div class="list-group">
           <% @late_dates.each do |date| %>
-            <a class="list-group-item list-group-item-danger"><button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close"><span onclick="deleteDate(this, <%= date.id %>)" class="glyphicon glyphicon-trash" aria-hidden="true"></span></button><span class="label label-default pull-left"><%= date.date_seen.to_formatted_s(:short) %></span><%= date.body %></a>
+            <a class="list-group-item list-group-item-danger"><button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close"><span onclick="deleteDate(this, <%= date.id %>)" class="glyphicon glyphicon-trash" aria-hidden="true"></span></button><span class="label label-default pull-left date-label"><%= date.date_show.to_formatted_s(:short) %></span><%= date.body %></a>
           <% end %>
         </div>
       <% end %>
@@ -69,8 +69,9 @@
         <button class="btn btn-info btn-sm" onclick="advanceItem()"> Show it again soon </button>
       </form>
       <form action='/notes/<%= note.id %>/remove' data-remote='true' class="inline">
-        <button class="btn btn-danger btn-sm" onclick="advanceItem()">Delete mem</button>
+        <button class="btn btn-danger btn-sm" onclick="advanceItem()"> Remove from Stack </button>
       </form>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span onclick="deleteDate(this, <%= note.id %>)" class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
       </div>
       <% id_count += 1 %>
 

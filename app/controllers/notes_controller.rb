@@ -77,7 +77,7 @@ class NotesController < ApplicationController
   def setup_events
     @tomorrow_dates = @dates.where(:date_show => Date.tomorrow)
     @today_dates = @dates.where(:date_show => Date.today)
-    @late_dates = @dates.where("date_show < ?", Date.today)
+    @late_dates = @dates.where("date_show < ?", Date.today).sort_by{ |d| d.date_show }
   end
 
   def setup_dates

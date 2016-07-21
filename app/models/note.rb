@@ -1,7 +1,6 @@
 class Note < ActiveRecord::Base
   attr_accessor :tag_list
   acts_as_taggable_on :tags
-  validates :body, length: { maximum: 500 }
 
   def self.all_notes(user)
     priority_notes = get_all_priority_notes(user)
