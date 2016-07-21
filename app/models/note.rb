@@ -3,12 +3,6 @@ class Note < ActiveRecord::Base
   acts_as_taggable_on :tags
   validates :body, length: { maximum: 500 }
 
-  def self.ready_to_show(user)
-    priority_notes = get_priority_notes(user)
-    date_notes = get_date_notes(user)
-    date_notes + priority_notes
-  end
-
   def self.all_notes(user)
     priority_notes = get_all_priority_notes(user)
     date_notes = get_all_date_notes(user)
@@ -53,9 +47,8 @@ class Note < ActiveRecord::Base
 
   def self.get_date_notes(user)
     note = Note.where(user: user)
-      .where.not(date_seen: Date.today)
       .where.not(date_show: nil)
-      .where("date_show <= ?", Date.today)
+      .where("date_show <= ?", (Date.today + 1))
     return [] if !note
     note
   end

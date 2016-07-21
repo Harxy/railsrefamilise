@@ -8,9 +8,11 @@ Rails.application.routes.draw do
   resources :history
   get '/notes/:id/seen' => 'notes#seen'
   get '/notes/:id/remove' => 'notes#delete_from_view'
+  get '/notes/:id/delete_mem' => 'notes#destroy'
   get '/' => "notes#index"
   get '/blog' => "blogs#index"
   get '/user_info/seen_it' => "user_info#seen_it"
+  get '/user_info/dismissed_events' => "user_info#dismissed_events"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

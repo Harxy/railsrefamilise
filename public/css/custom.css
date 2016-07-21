@@ -13,6 +13,22 @@
   text-align:center;
 }
 
+.label {
+  margin: 2px 7px;
+}
+
+.list-group {
+  margin: 10px 0px;
+}
+
+.panel-body {
+  padding: 7px;
+}
+
+.glyphicon-trash {
+  color: red
+}
+
 p {
   text-align: left;
 }

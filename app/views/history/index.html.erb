@@ -3,8 +3,15 @@
   <% @hash[tag].each do |values| %>
     <% values.each do |note| %>
       <div class='jumbotron'>
+        <button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close"><span onclick="deleteDate(this, <%= note.id %>)" class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
       <%= raw auto_link(note.body.gsub(/\n/, '<br />')) %>
       </div>
     <% end %>
   <% end %>
 <% end %>
+<script>
+function deleteDate(element, id) {
+  $(element).closest(".jumbotron").hide("slow");
+  $.get('/notes/' + id + '/delete_mem');
+}
+</script>

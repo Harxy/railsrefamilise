@@ -24,6 +24,15 @@ class NotesController < ApplicationController
     render nothing: true
   end
 
+  def destroy
+    note = Note.find(params['id'])
+    note.taggings.each do |tag|
+      tag.delete
+    end
+    note.delete
+    render nothing: true
+  end
+
   private
 
   def note_params
@@ -38,8 +47,14 @@ class NotesController < ApplicationController
     @user_info.seen_mem_time <= (DateTime.now - 1.hour)
   end
 
+  def show_dates?
+    !(@user_info.dates_dismissed == Date.today)
+  end
+
   def get_notes
-    show_mems? ? @notes = Note.ready_to_show(current_user) : @notes = []
+    show_mems? ? @notes = Note.get_priority_notes(current_user) : @notes = []
+    show_dates? ? @dates = Note.get_date_notes(current_user) : @dates = []
+    setup_events if @dates != []
   end
 
   def get_user_info
@@ -57,6 +72,12 @@ class NotesController < ApplicationController
 
   def date_today
     Date.today
+  end
+
+  def setup_events
+    @tomorrow_dates = @dates.where(:date_show => Date.tomorrow)
+    @today_dates = @dates.where(:date_show => Date.today)
+    @late_dates = @dates.where("date_show < ?", Date.today)
   end
 
   def setup_dates

@@ -6,6 +6,11 @@ class UserInfoController < ApplicationController
     render nothing: true
   end
 
+  def dismissed_events
+    @user_info.update_attributes(:dates_dismissed => Date.today)
+    render nothing: true
+  end
+
   private
   # all three of these below should be their own helper methods
   def current_user
