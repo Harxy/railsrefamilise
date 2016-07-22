@@ -48,6 +48,10 @@ li {
   width: 50px;
 }
 
+button.close {
+  margin-left: 15px;
+}
+
 .icon {
   padding-top: 0px;
   padding-left: 30px;
@@ -59,10 +63,8 @@ li {
 }
 
 .jumbotron {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 20px !important;
   margin-bottom: 20px;
-  padding-right: 0px;
 }
 
 .jumbotron p {
