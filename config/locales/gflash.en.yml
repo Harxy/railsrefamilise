@@ -1,0 +1,28 @@
+en:
+  gflash:
+    #
+    # These are the translations for the different titles.
+    #
+    titles:
+      notice: "Notice"
+      success: "Successful"
+      warning: "Warning"
+      error: "Error"
+      progress: "Progress"
+    #
+    # Add default gflash messages:
+    defaults:
+      error: "Something went wrong"
+      create:
+        success: "Mem Stored"
+        error: "Something went wrong. Please take a look at the form to see what went wrong."
+    #
+    # Add gflash messages for controller actions:
+    # products:
+    #   create:
+    #     notice: "This is a notification"
+    #     error: "Something went wrong"
+    #
+    # Inside controller: 
+    # gflash :notice, :error
+    #

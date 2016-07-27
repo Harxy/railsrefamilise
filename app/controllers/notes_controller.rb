@@ -7,8 +7,14 @@ class NotesController < ApplicationController
   def create
     @note = Note.new(note_params)
     tag_params = params['tag_list'].downcase
-    @user_info.tag(@note, :with => tag_params, :on => :tags)
-    @note.save
+    if tag_params != "null"
+      @user_info.tag(@note, :with => tag_params, :on => :tags)
+    end
+    if @note.save
+      flash[:notice] = "Mem saved"
+    else
+      flash[:notice] = "Something went wrong"
+    end
     redirect_to '/notes'
   end
 
@@ -30,6 +36,18 @@ class NotesController < ApplicationController
       tag.delete
     end
     note.delete
+    render nothing: true
+  end
+
+  def push_back
+    note = Note.find(params["id"])
+    note.update_attributes(:date_show => note.date_show + 1)
+    render nothing: true
+  end
+
+  def push_back_more
+    note = Note.find(params["id"])
+    note.update_attributes(:date_show => note.date_show + 3)
     render nothing: true
   end
 

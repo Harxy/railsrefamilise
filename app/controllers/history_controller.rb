@@ -7,6 +7,7 @@ class HistoryController < ApplicationController
 
   def get_tags
     @all_notes = Note.where(:user => current_user)
+    @untagged = @all_notes.select { |n| n.tags == [] }
     @all_tags = @user_info.owned_tags.sort_by {|t| t.name }
     @hash = Hash.new { |h,k| h[k] = [] }
     @all_tags.each do |tag|

@@ -13,10 +13,10 @@ class Auth0Controller < ApplicationController
   end
 
   def add_user_info
-    UserInfo.create(:user_id => current_user,
-                   :new_user => false,
-                   :seen_mems => false,
-                   :seen_mem_time => (DateTime.now - 2.hour))
+    @user_info = UserInfo.create(:user_id => current_user,
+                                 :new_user => false,
+                                 :seen_mems => false,
+                                 :seen_mem_time => (DateTime.now - 2.hour))
   end
 
   def logout
@@ -31,22 +31,22 @@ class Auth0Controller < ApplicationController
   def add_welcome_mems
     date_time = Date.yesterday
     note2 = Note.new(:tag_list => ["welcome"],
-                     :body => "Welcome to MemTank. This is an example note to help you get going.\n Click Seen it! below to continue.",
+                     :body => "Welcome to MemTank, a little web app designed to help you rememeber things. You can read a blog post all about it here: \n\n https://memtank.herokuapp.com/blog#blog1 \n\n This thing you are reading now is an example mem to help you get going.\n\n Click the green Seen it! tick above to continue.",
                      :priority => 3,
                      :date_seen => date_time,
                      :user => current_user)
     note1 = Note.new(:tag_list => ["welcome"],
-                     :body => "The Seen it! button sends the note back into the MemTank. It'll be back, depending on its priority, but not today. You can also delete a note or say that you want to see it again soon.",
+                     :body => "The Seen it! button sends the note back into the MemTank. It'll be back, depending on its priority, but not today. You can also delete a note, using the red trash icon, or tell MemTank you want to see it again soon, even today, using the blue repeat symbol.",
                      :priority => 3,
                      :date_seen => date_time,
                      :user => current_user)
     note4 = Note.new(:tag_list => ["welcome"],
-                     :body => "When creating your own notes, you can either prioritize them, based on how soon you want to see them again, or by time period (Tomorrow, Next Week.. etc). \n I won't bore you with exactly how it works, but a High priority mem will be reshown to you roughly three times as often as a low priority mem.",
+                     :body => "There are two basic types of mem. There are mems, and alerts. \n\n An alert is just a mem that has a specific date attached to it, and will pop up on that day. Normally mems are just selected from the stack to display to you. \n\n I won't bore you with exactly how it works, but a High priority mem will be reshown to you roughly three times as often as a low priority mem.",
                      :priority => 2,
                      :date_seen => date_time,
                      :user => current_user)
     note3 = Note.new(:tag_list => ["welcome"],
-                     :body => "If you choose to do it by time period, the mem won't reappear until exactly that date. Why not make a mem now and tell it to pop up again in a week? I'll wait.",
+                     :body => "If you choose to save a mem by date (tomorrow, next week, etc), the mem won't reappear until exactly that date. These are called alerts. Why not make a mem now and tell it to pop up again tomorrow? You don't have to tag it with anything if you don't want to. \n\n Click the green tick once you're done.",
                      :priority => 2,
                      :date_seen => date_time,
                      :user => current_user)

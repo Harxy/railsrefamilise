@@ -15,7 +15,21 @@
 
 @media (min-width: 300px) {
   .date-label {
-    margin: 2px 7px;
+    margin: 2px 7px 2px 0px;
+  }
+  .alert-fixed {
+    position: fixed;
+    top: -1px;
+    z-index: 9999;
+    border-radius: 5px;
+    opacity: 35%; 
+  }
+}
+
+@media (min-width: 767px) {
+  .alert-fixed {
+    top: 2px;
+    margin-left: 80px;
   }
 }
 
@@ -23,12 +37,28 @@
   margin: 10px 0px;
 }
 
-.panel-body {
-  padding: 7px;
+.glyphicon-trash {
+  color: red;
 }
 
-.glyphicon-trash {
-  color: red
+.glyphicon-ok {
+  color: green;
+}
+
+.glyphicon-repeat {
+  color: blue;
+}
+
+.glyphicon-triangle-right {
+  color: blue;
+}
+
+.glyphicon-forward {
+  color: blue;
+}
+
+.glyphicon-menu-hamburger {
+  margin-left: 5px
 }
 
 p {
@@ -49,7 +79,7 @@ li {
 }
 
 button.close {
-  margin-left: 15px;
+  margin: 0px 5px;
 }
 
 .icon {
@@ -60,6 +90,10 @@ button.close {
 .btn {
   margin-right: 3px;
   margin-bottom: 10px;
+}
+
+:focus {
+  outline: none !important;
 }
 
 .jumbotron {

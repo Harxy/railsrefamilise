@@ -1,116 +1,62 @@
-<% id_count = 0 %>
-<% if @dates.any? %>
-  <div class="panel panel-default">
-    <div class="panel-heading">Events<button type="button" onclick="closeDates()" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
-    <div class="panel-body">
-      <% if @tomorrow_dates[0] %>
-        <div class="list-group">
-          <% @tomorrow_dates.each do |date| %>
-            <a class="list-group-item list-group-item-warning"><button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close"><span onclick="deleteDate(this, <%= date.id %>)" class="glyphicon glyphicon-trash" aria-hidden="true"></span></button><span class="label label-default pull-left date-label">tomorrow</span><%= date.body %></a>
-          <% end %>
-        </div>
-      <% end %>
-      <% if @today_dates[0] %>
-        <div class="list-group">
-          <% @today_dates.each do |date| %>
-            <a class="list-group-item list-group-item-success"><button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close"><span onclick="deleteDate(this, <%= date.id %>)" class="glyphicon glyphicon-trash" aria-hidden="true"></span></button><span class="label label-default pull-left date-label">today</span><%= date.body %></a>
-          <% end %>
-        </div>
-      <% end %>
-      <% if @late_dates[0] %>
-        <div class="list-group">
-          <% @late_dates.each do |date| %>
-            <a class="list-group-item list-group-item-danger"><button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close"><span onclick="deleteDate(this, <%= date.id %>)" class="glyphicon glyphicon-trash" aria-hidden="true"></span></button><span class="label label-default pull-left date-label"><%= date.date_show.to_formatted_s(:short) %></span><%= date.body %></a>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-
+<% if flash[:notice] %>
+  <div class="alert alert-success alert-fixed" id="success" role="alert" style="display:none"><%= flash[:notice] %></div>
 <% end %>
-<div class='jumbotron'><button type="button" onclick="$('.jumbotron').hide('slow')" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <% if @notes[0] == nil %>
-    <div id="note<%= id_count %>" >
-      <h4> No mems to view right now! </h4>
-      <p> Come back later to view more mems </p>
-      <p> Feel free to add more below </p>
-    </div>
 
-  <% else %>
+<%= render 'layouts/notesMems' %>
 
-    <% @notes.each_with_index do |note, i| %>
-      <% label = "warning"
-      case note.priority
-      when 2
-        label = "info"
-      when 3
-        label = "success"
-      end %>
+<% if @dates.any? %>
+  <%= render '/layouts/notesDates' %> 
+<% end %>
 
-      <div id="note<%= i %>" <% if i != 0%> style="display:none" <%end%>>
-        <p>
-        <% note.tags.each do |tag| %>
-          <span class="label label-info"><%= tag %></span>
-        <% end %>
-        <span class="pull-right"> <span class="label label-<%= label %>"> 
-            <% if note.priority != 0 %>
-              <%= note.priority_in_words %>
-            <% else %>
-              <%= note.date_show.to_formatted_s(:short) %>
-            <% end %>
-        </p>
-        <p><%= raw auto_link(note.body.gsub(/\n/, '<br />')) %></p>
-        <p class='text-muted'> Mem Last viewed: <%= note.date_seen.to_formatted_s(:short) %> 
-      </p>
-      <form action="/notes/<%= note.id %>/seen" data-remote='true' class="inline">
-        <button class="btn btn-success btn-sm" onclick="advanceItem()"> Seen it </button>
-      </form>
-      <form data-remote='true' class="inline">
-        <button class="btn btn-info btn-sm" onclick="advanceItem()"> Show it again soon </button>
-      </form>
-      <form action='/notes/<%= note.id %>/remove' data-remote='true' class="inline">
-        <button class="btn btn-danger btn-sm" onclick="advanceItem()"> Remove from Stack </button>
-      </form>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span onclick="deleteNote(this, <%= note.id %>)" class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-      </div>
-      <% id_count += 1 %>
-
-    <% end %>
-    <div class="final" id="note<%= id_count %>" style="display:none" >
-      <h4> Seen all your current mems </h4>
-      <p class="no-top">Come back in a little while for more Mems!</p>
-      <p> Or feel free to add some new one's below </p>
-    </div>
-  <% end %>
-
-</div>
 <script>
 var i = 0
 $(document).on('ready page:load', function() {
-  i = 0
+  i = 0;
+  noteArray = <%= @notes.map { |note| note.id } %>;
+  $("#success").fadeIn("slow").delay(2000).fadeOut();
 });
+
 function advanceItem() {
   $('#note' + i).hide("slow");
   $('#note' + (i+1)).show("slow");
   i++;
   if ($('.final').is(':visible')){
     $.get('/user_info/seen_it');
-    $('.jumbotron').hide("slow");
+    $("#controls").hide();
   }
 }
 
-function closeDates() {
-  $('.panel-default').hide("slow");
-  $.get('/user_info/dismissed_events');
+function pushBack(element, id) {
+  $(element).closest(".list-group-item").hide('slow', function(){ $(element).closest(".list-group-item").remove(); });
+  $.get('/notes/' + id + '/push_back');
+  setTimeout(function(){check()}, 700);
+}
+
+function pushBackMore(element, id) {
+  $(element).closest(".list-group-item").hide('slow', function(){ $(element).closest(".list-group-item").remove(); });
+  $.get('/notes/' + id + '/push_back_more');
+  setTimeout(function(){check()}, 700);
 }
 
 function deleteDate(element, id) {
-  $(element).closest(".list-group-item").hide("slow");
+  $(element).closest(".list-group-item").hide('slow', function(){ $(element).closest(".list-group-item").remove(); });
   $.get('/notes/' + id + '/delete_mem');
+  setTimeout(function(){check()}, 700);
 }
+
+function check() {
+  if ($('#datesList1').children().length === 0 && $('#datesList2').children().length === 0 && $('#datesList3').children().length === 0) {
+    $('#alertspanel').hide("slow");
+  }
+}
+
+function seenIt(element, id) {
+  advanceItem();
+  $.get('/notes/' + noteArray[id] + '/seen');
+} 
 
 function deleteNote(element, id) {
   advanceItem();
-  $.get('/notes/' + id + '/delete_mem');
+  $.get('/notes/' + noteArray[id] + '/delete_mem');
 }
 </script>

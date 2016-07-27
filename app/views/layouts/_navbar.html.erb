@@ -21,6 +21,9 @@
       <ul class="nav navbar-nav">
         <li><%= link_to 'Blog', '/blog' %></li>
       </ul>
+      <ul class="nav navbar-nav">
+        <li><%= link_to 'Feedback', '/feedback' %></li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if session[:userinfo] %>
           <li><%= link_to 'Logout ' + session[:userinfo]['extra']['raw_info']['nickname'], "/auth/logout" %></li>

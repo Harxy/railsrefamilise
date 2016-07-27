@@ -21,11 +21,16 @@ gem 'rails_autolink'
 group :development, :test do
   gem 'byebug'
   gem 'pry'
+  gem 'rspec-rails'
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
 
   gem 'spring'
+end
+
+group :test do
+  gem 'capybara'
 end
 

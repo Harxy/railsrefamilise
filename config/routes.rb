@@ -9,10 +9,15 @@ Rails.application.routes.draw do
   get '/notes/:id/seen' => 'notes#seen'
   get '/notes/:id/remove' => 'notes#delete_from_view'
   get '/notes/:id/delete_mem' => 'notes#destroy'
+  get '/notes/:id/push_back' => 'notes#push_back'
+  get '/notes/:id/push_back_more' => 'notes#push_back_more'
   get '/' => "notes#index"
   get '/blog' => "blogs#index"
   get '/user_info/seen_it' => "user_info#seen_it"
   get '/user_info/dismissed_events' => "user_info#dismissed_events"
+  get '/feedback' => "feedback#index"
+  post '/feedback' => "feedback#create"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
