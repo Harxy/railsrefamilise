@@ -31,7 +31,9 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <script>
 $( function() {
+if (!window.matchMedia || (window.matchMedia("(min-width: 767px)").matches)) {
   $( document ).tooltip({ show: { delay: 700 }});
+}
 } );
 $.noConflict();
     </script>
