@@ -28,16 +28,17 @@
   <div class="form-group">
     <div class="col-md-12">
       <div class="btn-group" role="group" title="Choose a priority for your mem to send it into the stack">
-        <button type='submit' id="priority1" name="priority" value="1" class="btn btn-warning">Low</button>
-        <button type='submit' id="priority2" name="priority" value="2" class="btn btn-info">Medium</button>
-        <button type='submit' id="priority3" name="priority" value="3" class="btn btn-success">High</button>
+        <button type='submit' id="priority1" name="priority" value="1" class="btn btn-warning btn-sm">Low</button>
+        <button type='submit' id="priority2" name="priority" value="2" class="btn btn-info btn-sm">Medium</button>
+        <button type='submit' id="priority3" name="priority" value="3" class="btn btn-success btn-sm">High</button>
       </div>
       <div class="btn-group" role="group" title="Choose a date to be alerted about your mem">
-        <button type='submit' id="date0" name="date_show" value="<%= @today %>" class="btn btn-primary">Today</button>
-        <button type='submit' id="date1" name="date_show" value="<%= @tomorrow %>" class="btn btn-primary">Tomorrow</button>
-        <button type='submit' id="date2" name="date_show" value="<%= @week %>" class="btn btn-primary">Week</button>
-        <button type='submit' id="date3" name="date_show" value="<%= @two_weeks %>" class="btn btn-primary">2 weeks</button>
-        <button type='submit' id="date4" name="date_show" value="<%= @month %>" class="btn btn-primary">Month</button>
+        <button type='submit' id="date0" name="date_show" value="<%= @today %>" class="btn btn-primary btn-sm">Today</button>
+        <button type='submit' id="date1" name="date_show" value="<%= @tomorrow %>" class="btn btn-primary btn-sm">Tomorrow</button>
+        <button type='submit' id="date2" name="date_show" value="<%= @three_days %>" class="btn btn-primary btn-sm">3 days</button>
+        <button type='submit' id="date3" name="date_show" value="<%= @week %>" class="btn btn-primary btn-sm">Week</button>
+        <button type='submit' id="date4" name="date_show" value="<%= @two_weeks %>" class="btn btn-primary btn-sm">2 weeks</button>
+        <button type='submit' id="date5" name="date_show" value="<%= @month %>" class="btn btn-primary btn-sm">Month</button>
       </div>
     </div>
   </div>

@@ -101,6 +101,7 @@ class NotesController < ApplicationController
   def setup_dates
     @today = Date.today
     @tomorrow = Date.today + 1
+    @three_days = Date.today + 3
     @week = Date.today + 7
     @two_weeks = Date.today + 14
     @month = Date.today + 30
