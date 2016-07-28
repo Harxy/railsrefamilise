@@ -19,9 +19,9 @@
         Mems
         <a class="close pull-right glyphicon glyphicon-menu-hamburger" data-toggle="collapse" href=".collapse-mems"></a>
         <span id="controls">
-          <button type="button" title="Delete this mem" class="close glyphicon glyphicon-trash" data-dismiss="alert" aria-label="Close" onclick="deleteNote(this, i)"></button>
-          <button type="button" title="Show this mem again today" class="close glyphicon glyphicon-repeat" onclick="advanceItem()"></button>
-          <button type="button" title="Seen it! Put this mem back in the stack" class="close glyphicon glyphicon-ok" onclick="seenIt(this, i)"></button>
+          <label type="button" title="Delete this mem" class="close glyphicon glyphicon-trash button" data-dismiss="alert" aria-label="Close" onclick="deleteNote(this, i)"></label>
+          <label type="button" title="Show this mem again today" class="close glyphicon glyphicon-repeat button" data-dismiss="alert" aria-label="Close" onclick="advanceItem()"></label>
+          <label type="button" title="Seen it! Put this mem back in the stack" class="close glyphicon glyphicon-ok button" data-dismiss="alert" aria-label="Close" onclick="seenIt(this, i)"></label>
         </span>
       </div>
       <% @notes.each_with_index do |note, i| %>

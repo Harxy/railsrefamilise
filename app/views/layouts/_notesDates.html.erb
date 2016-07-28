@@ -8,15 +8,15 @@
       <div class="list-group" id="datesList1">
         <% @tomorrow_dates.each do |date| %>
           <a class="list-group-item list-group-item-warning">
-            <button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
+            <label type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
               <span onclick="deleteDate(this, <%= date.id %>)" title="Mark this mem as done and delete it" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-            </button>
-            <button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
+            </label>
+            <label type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
               <span onclick="pushBackMore(this, <%= date.id %>)" title="Push this mem back by 3 days" class="glyphicon glyphicon-forward" aria-hidden="true"></span>
-            </button>
-            <button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
+            </label>
+            <label type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
               <span onclick="pushBack(this, <%= date.id %>)" title="Push this mem back by a day" class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
-            </button>
+            </label>
             <span class="label label-default pull-left date-label">tomorrow</span><%= raw auto_link(date.body.gsub(/\n/, '<br />')) %></a>
         <% end %>
       </div>
@@ -25,15 +25,15 @@
       <div class="list-group" id="datesList2">
         <% @today_dates.each do |date| %>
           <a class="list-group-item list-group-item-success">
-            <button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
+            <label type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
               <span onclick="deleteDate(this, <%= date.id %>)" title="Mark this mem as done and delete it" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-            </button>
-            <button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
+            </label>
+            <label type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
               <span onclick="pushBackMore(this, <%= date.id %>)" title="Push this mem back by 3 days" class="glyphicon glyphicon-forward" aria-hidden="true"></span>
-            </button>
-            <button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
+            </label>
+            <label type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
               <span onclick="pushBack(this, <%= date.id %>)" title="Push this mem back by a day" class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
-            </button>
+            </label>
             <span class="label label-default pull-left date-label">today</span>
             <%= raw auto_link(date.body.gsub(/\n/, '<br />')) %>
           </a>
@@ -44,15 +44,15 @@
       <div class="list-group">
         <% @late_dates.each do |date| %>
           <a class="list-group-item list-group-item-danger" id="datesList3">
-            <button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
+            <label type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
               <span onclick="deleteDate(this, <%= date.id %>)" title="Mark this mem as done and delete it" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-            </button>
-            <button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
-              <span onclick="pushBackMore(this, <%= date.id %>) "title="Push this mem back by 3 days" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-            </button>
-            <button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
+            </label>
+            <label type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
+              <span onclick="pushBackMore(this, <%= date.id %>) "title="Push this mem back by 3 days" class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+            </label>
+            <label type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
               <span onclick="pushBack(this, <%= date.id %>)" title="Push this mem back by a day" class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
-            </button>
+            </label>
             <span class="label label-default pull-left date-label"><%= date.date_show.to_formatted_s(:short) %></span>
             <%= raw auto_link(date.body.gsub(/\n/, '<br />')) %>
           </a>

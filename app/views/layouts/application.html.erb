@@ -34,18 +34,6 @@ $( function() {
   $( document ).tooltip({ show: { delay: 700 }});
 } );
 $.noConflict();
-$( document ).on('ready page:load', function() {
-  $('#tokenfield').tokenfield({
-    delimiter: [',', ' '],
-    limit: 3,
-    createTokensOnBlur: true,
-    autocomplete: {
-      source: [],
-      delay: 100
-    },
-    showAutocompleteOnFocus: true
-  })
-});
     </script>
     <%= csrf_meta_tags %>
   </head>
