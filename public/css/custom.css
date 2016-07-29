@@ -44,6 +44,10 @@
 }
 
 .glyphicon-ok {
+  color: green;
+}
+
+.glyphicon-check {
   color: blue;
 }
 
