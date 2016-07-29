@@ -29,7 +29,7 @@
         <div id="note<%= i %>" <% if i != 0%> style="display:none" <%end%> class="panel-body collapse in collapse-mems" aria-expanded="true" aria-controls="collapse">
 
           <span class="label label-info date-label pull-left"><%= note.tags[0] %></span>
-          <%= raw auto_link(note.body.gsub(/\n/, '<br />')) %>
+          <%= raw auto_link(sanitize note.body.gsub(/\n/, '<br />')) %>
           <% id_count += 1 %>
         </div>
 

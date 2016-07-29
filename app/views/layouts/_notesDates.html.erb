@@ -17,7 +17,7 @@
             <label type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
               <span onclick="pushBack(this, <%= date.id %>)" title="Push this mem back by a day" class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
             </label>
-            <span class="label label-default pull-left date-label">tomorrow</span><%= raw auto_link(date.body.gsub(/\n/, '<br />')) %>
+            <span class="label label-default pull-left date-label">tomorrow</span><%= raw auto_link(sanitize date.body.gsub(/\n/, '<br />')) %>
         </div>
         <% end %>
       </div>
@@ -36,7 +36,7 @@
               <span onclick="pushBack(this, <%= date.id %>)" title="Push this mem back by a day" class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
             </label>
             <span class="label label-default pull-left date-label">today</span>
-            <%= raw auto_link(date.body.gsub(/\n/, '<br />')) %>
+            <%= raw auto_link(sanitize date.body.gsub(/\n/, '<br />')) %>
           </div>
         <% end %>
       </div>
@@ -55,7 +55,7 @@
               <span onclick="pushBack(this, <%= date.id %>)" title="Push this mem back by a day" class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
             </label>
             <span class="label label-default pull-left date-label"><%= date.date_show.to_formatted_s(:short) %></span>
-            <%= raw auto_link(date.body.gsub(/\n/, '<br />')) %>
+            <%= raw auto_link(sanitize date.body.gsub(/\n/, '<br />')) %>
           </div>
         <% end %>
       </div>
