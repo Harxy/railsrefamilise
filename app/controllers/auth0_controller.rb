@@ -31,7 +31,7 @@ class Auth0Controller < ApplicationController
   def add_welcome_mems
     date_time = Date.yesterday
     note2 = Note.new(:tag_list => ["welcome"],
-                     :body => "Welcome to MemTank, a little web app designed to help you remember things. You can read a blog post all about it here: \n\n https://memtank.herokuapp.com/blog#blog1 \n\n This thing you are reading now is an example mem to help you get going.\n\n Click the green Seen it! tick above to continue.",
+                     :body => "Welcome to MemTank, a little web app designed to help you remember things. You can read a blog post all about it here: \n\n https://memtank.herokuapp.com/blog#blog1 \n\n This thing you are reading now is an example mem to help you get going.\n\n Click the blue Seen it! tick above to continue.",
                      :priority => 3,
                      :date_seen => date_time,
                      :user => current_user)

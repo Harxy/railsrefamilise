@@ -7,7 +7,7 @@
     <% if @tomorrow_dates[0] %>
       <div class="list-group" id="datesList1">
         <% @tomorrow_dates.each do |date| %>
-          <a class="list-group-item list-group-item-warning">
+          <div class="list-group-item list-group-item-warning">
             <label type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
               <span onclick="deleteDate(this, <%= date.id %>)" title="Mark this mem as done and delete it" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
             </label>
@@ -17,14 +17,15 @@
             <label type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
               <span onclick="pushBack(this, <%= date.id %>)" title="Push this mem back by a day" class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
             </label>
-            <span class="label label-default pull-left date-label">tomorrow</span><%= raw auto_link(date.body.gsub(/\n/, '<br />')) %></a>
+            <span class="label label-default pull-left date-label">tomorrow</span><%= raw auto_link(date.body.gsub(/\n/, '<br />')) %>
+        </div>
         <% end %>
       </div>
     <% end %>
     <% if @today_dates[0] %>
       <div class="list-group" id="datesList2">
         <% @today_dates.each do |date| %>
-          <a class="list-group-item list-group-item-success">
+          <div class="list-group-item list-group-item-success">
             <label type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
               <span onclick="deleteDate(this, <%= date.id %>)" title="Mark this mem as done and delete it" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
             </label>
@@ -36,14 +37,14 @@
             </label>
             <span class="label label-default pull-left date-label">today</span>
             <%= raw auto_link(date.body.gsub(/\n/, '<br />')) %>
-          </a>
+          </div>
         <% end %>
       </div>
     <% end %>
     <% if @late_dates[0] %>
       <div class="list-group">
         <% @late_dates.each do |date| %>
-          <a class="list-group-item list-group-item-danger" id="datesList3">
+          <div class="list-group-item list-group-item-danger" id="datesList3">
             <label type="button" class="close pull-right" data-dismiss="alert" aria-label="Close">
               <span onclick="deleteDate(this, <%= date.id %>)" title="Mark this mem as done and delete it" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
             </label>
@@ -55,7 +56,7 @@
             </label>
             <span class="label label-default pull-left date-label"><%= date.date_show.to_formatted_s(:short) %></span>
             <%= raw auto_link(date.body.gsub(/\n/, '<br />')) %>
-          </a>
+          </div>
         <% end %>
       </div>
     <% end %>
