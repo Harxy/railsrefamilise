@@ -1,26 +1,37 @@
 <% if @untagged != [] %>
   <h4> <span class="label label-info">untagged</span> </h4>
-  <% @untagged.each do |note| %>
+  <span id="contentCheck">
+    <% @untagged.each do |note| %>
       <div class='jumbotron'>
         <button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close"><span onclick="deleteDate(this, <%= note.id %>)" class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-      <%= raw auto_link(note.body.gsub(/\n/, '<br />')) %>
+        <%= raw auto_link(note.body.gsub(/\n/, '<br />')) %>
       </div>
     <% end %>
-  <% end %>
+  </span>
+<% end %>
 <% @all_tags.each do |tag| %>
   <h4> <span class="label label-info"> <%= tag %> </span> </h4>
-  <% @hash[tag].each do |values| %>
-    <% values.each do |note| %>
-      <div class='jumbotron'>
-        <button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close"><span onclick="deleteDate(this, <%= note.id %>)" class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-      <%= raw auto_link(note.body.gsub(/\n/, '<br />')) %>
-      </div>
+  <span id="contentCheck">
+    <% @hash[tag].each do |values| %>
+      <% values.each do |note| %>
+        <div class='jumbotron'>
+          <button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close"><span onclick="deleteDate(this, <%= note.id %>)" class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+          <%= raw auto_link(note.body.gsub(/\n/, '<br />')) %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </span>
 <% end %>
 <script>
 function deleteDate(element, id) {
-  $(element).closest(".jumbotron").hide("slow");
+  $(element).closest(".jumbotron").hide('slow', function(){ $(element).closest(".jumbotron").remove(); });
   $.get('/notes/' + id + '/delete_mem');
+  setTimeout(function(){check()}, 700);
+}
+
+function check() {
+  if ($('#contentCheck').children().length === 0) {
+    $('#contentCheck').prev().hide("slow");
+  }
 }
 </script>

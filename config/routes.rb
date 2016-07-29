@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/notes/:id/delete_mem' => 'notes#destroy'
   get '/notes/:id/push_back' => 'notes#push_back'
   get '/notes/:id/push_back_more' => 'notes#push_back_more'
+  get '/notes/:id/priority' => 'notes#change_priority'
   get '/' => "notes#index"
   get '/blog' => "blogs#index"
   get '/user_info/seen_it' => "user_info#seen_it"

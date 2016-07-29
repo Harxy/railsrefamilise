@@ -19,7 +19,8 @@
   }
   .alert-fixed {
     position: fixed;
-    top: -1px;
+    margin-top: 0px;
+    top: 0px;
     z-index: 9999;
     border-radius: 5px;
     opacity: 35%; 
@@ -38,11 +39,12 @@
 }
 
 .glyphicon-trash {
-  color: red;
+  color: #d40000;
+  margin-left: 25px !important;
 }
 
 .glyphicon-ok {
-  color: green;
+  color: blue;
 }
 
 .glyphicon-repeat {
@@ -55,6 +57,14 @@
 
 .glyphicon-forward {
   color: blue;
+}
+
+.glyphicon-thumbs-down {
+  color: red;
+}
+
+.glyphicon-thumbs-up {
+  color: green;
 }
 
 .glyphicon-menu-hamburger {

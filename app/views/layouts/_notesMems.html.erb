@@ -20,8 +20,9 @@
         <a class="close pull-right glyphicon glyphicon-menu-hamburger" data-toggle="collapse" href=".collapse-mems"></a>
         <span id="controls">
           <label type="button" title="Delete this mem" class="close glyphicon glyphicon-trash button" data-dismiss="alert" aria-label="Close" onclick="deleteNote(this, i)"></label>
-          <label type="button" title="Show this mem again today" class="close glyphicon glyphicon-repeat button" data-dismiss="alert" aria-label="Close" onclick="advanceItem()"></label>
-          <label type="button" title="Seen it! Put this mem back in the stack" class="close glyphicon glyphicon-ok button" data-dismiss="alert" aria-label="Close" onclick="seenIt(this, i)"></label>
+          <label type="button" title="Seen it, and show me this mem less" class="close glyphicon glyphicon-thumbs-down button" data-dismiss="alert" aria-label="Close" onclick="changePriority('down', i)"></label>
+          <label type="button" title="Seen it! Put this mem back in the stack" class="close glyphicon glyphicon-ok button" data-dismiss="alert" aria-label="Close" onclick="advanceItem()"></label>
+          <label type="button" title="Seen it, and show me this mem more" class="close glyphicon glyphicon-thumbs-up button" data-dismiss="alert" aria-label="Close" onclick="changePriority('up', i)"></label>
         </span>
       </div>
       <% @notes.each_with_index do |note, i| %>

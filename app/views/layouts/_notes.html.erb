@@ -55,6 +55,11 @@ function seenIt(element, id) {
   $.get('/notes/' + noteArray[id] + '/seen');
 } 
 
+function changePriority(direction, id) {
+  advanceItem();
+  $.get('notes/' + noteArray[id] + '/priority', {"direction": direction});
+}
+
 function deleteNote(element, id) {
   advanceItem();
   $.get('/notes/' + noteArray[id] + '/delete_mem');
