@@ -88,7 +88,7 @@ class NotesController < ApplicationController
   end
 
   def get_notes
-    show_mems? ? @notes = Note.get_priority_notes(current_user) : @notes = []
+    show_mems? ? @notes = Note.get_priority_notes(current_user, @user_info.mem_no) : @notes = []
     show_dates? ? @dates = Note.get_date_notes(current_user) : @dates = []
     setup_events if @dates != []
   end

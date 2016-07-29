@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get '/feedback' => "feedback#index"
   post '/feedback' => "feedback#create"
   get '/options' => "options#index"
+  post '/options' => "options#edit"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

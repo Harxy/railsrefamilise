@@ -1,1 +1,12 @@
-<p> Options are not available yet. Soon! </p>
+
+<form id='options' class="form-horizontal" method="POST" action="/options" >
+  <div class="form-group">
+    <label class="col-sm-4 control-label">Mems per batch</label>
+    <div class="col-md-4">
+      <select name="option_mem_no" class="form-control">
+<%= options_for_select([3,5,7,10,15,20], @user_info.mem_no) %>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-info">Save</button>
+  </div>
+</form>

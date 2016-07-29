@@ -20,6 +20,7 @@
   .alert-fixed {
     position: fixed;
     margin-top: 0px;
+    left: 50%;
     top: 0px;
     z-index: 9999;
     border-radius: 5px;
@@ -30,6 +31,7 @@
 @media (min-width: 767px) {
   .alert-fixed {
     top: 2px;
+    left: 70%;
     margin-left: 80px;
   }
 }

@@ -35,13 +35,13 @@ class Note < ActiveRecord::Base
     Date.today != date_seen
   end
 
-  def self.get_priority_notes(user)
+  def self.get_priority_notes(user, mem_no)
     note = Note.where(user: user)
       .where.not(date_seen: Date.today)
       .sort_by(&:showing_order).reverse
       .reject{ |n| n['priority'] == 0}
     return [] if !note
-    note.slice(0,5)
+    note.slice(0, mem_no)
   end
 
   def self.get_date_notes(user)

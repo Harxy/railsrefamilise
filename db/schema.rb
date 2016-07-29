@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728105153) do
+ActiveRecord::Schema.define(version: 20160729115159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20160728105153) do
     t.string   "user_id"
     t.date     "dates_dismissed"
     t.string   "user_tags",       default: "---\n- idea\n- watch\n- buy\n- read\n- learn\n- info\n- reminder\n- task\n"
+    t.integer  "mem_no",          default: 5
   end
 
 end
