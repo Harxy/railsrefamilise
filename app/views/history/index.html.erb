@@ -7,11 +7,11 @@
 </div> 
 <% if @untagged != [] %>
   <h4> <span class="label label-info">untagged</span> </h4>
-  <span id="contentCheck">
+  <span id="contentCheck2">
     <% @untagged.each do |note| %>
       <div class='jumbotron'>
         <button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close"><span onclick="deleteDate(this, <%= note.id %>)" class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-        <%= raw auto_link(note.body.gsub(/\n/, '<br />')) %>
+        <%= raw auto_link(sanitize note.body.gsub(/\n/, '<br />')) %>
       </div>
     <% end %>
   </span>
@@ -23,7 +23,7 @@
       <% values.each do |note| %>
         <div class='jumbotron'>
           <button type="button" class="close pull-right" data-dismiss="alert" aria-label="Close"><span onclick="deleteDate(this, <%= note.id %>)" class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-          <%= raw auto_link(note.body.gsub(/\n/, '<br />')) %>
+          <%= raw auto_link(sanitize note.body.gsub(/\n/, '<br />')) %>
         </div>
       <% end %>
     <% end %>
@@ -41,6 +41,7 @@ $('a[href*="#"]').click(function(e) {
     window.location.hash = target;
   });
 });
+
 function deleteDate(element, id) {
   $(element).closest(".jumbotron").hide('slow', function(){ $(element).closest(".jumbotron").remove(); });
   $.get('/notes/' + id + '/delete_mem');
