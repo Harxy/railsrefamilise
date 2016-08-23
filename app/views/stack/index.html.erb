@@ -1,0 +1,47 @@
+<%= render 'layouts/notesMems' %>
+
+<script>
+function changePriority(direction, id) {
+  if (direction == 'up') {
+    $("#" + id).addClass("list-group-item-success");
+  }
+  else {
+    $("#" + id).addClass("list-group-item-danger");
+  }
+  $.get('/stack/' + id + '/priority', {"direction": direction});
+}
+
+function deleteNote(element, id) {
+  $.get('/stack/' + id + '/delete_mem');
+}
+$(document).ready(function () {
+    // when the load more link is clicked
+    $('.load-more').click(function (e) {
+
+        // prevent the default click action
+        e.preventDefault();
+
+        // hide load more link
+        $('.load-more').hide();
+
+        var notes = $('.notes').children();
+        for (var i = 0 ; i < notes.length ; i++) {
+          $.get('/notes/' + notes[i].id + '/seen')
+        }
+        // make an ajax call passing along our last user id
+        $.ajax({
+
+            type: "GET",
+            url: '/stack/data_output',
+            dataType: "script",
+
+            // upon success 
+            success: function () {
+                $('.load-more').show();
+            }
+        });
+
+    });
+});
+
+</script>

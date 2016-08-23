@@ -1,43 +1,90 @@
-<% id_count = 0 %>
-<% if !@notes.any? %>
-  <div class="panel panel-default">
+<div class="notes">
+  <%= render @notes %>
+</div>
+<div class="col-md-12 text-center"> 
+  <button class="load-more btn btn-lg"> Load More </button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+  <% id_count = 0 %>
+  <% if !@notes.any? %>
+    <div class="panel panel-default">
     <div class="panel-heading">
-      Mems
-      <a class="close pull-right glyphicon glyphicon-menu-hamburger" data-toggle="collapse" href="#collapse-mems"></a>
+    Mems
+    <a class="close pull-right glyphicon glyphicon-menu-hamburger" data-toggle="collapse" href="#collapse-mems"></a>
     </div>
     <div class="panel-body collapse" id="collapse-mems" aria-expanded="false" aria-controls="collapse">
-      <div id="note<%= id_count %>" >
-        <h4> No mems to view right now! </h4>
-        <p> Come back later to view more mems </p>
-        <p> Feel free to add more below </p>
-      </div>
+    <div id="note<%= id_count %>" >
+    <h4> No mems to view right now! </h4>
+    <p> Come back later to view more mems </p>
+    <p> Feel free to add more below </p>
+    </div>
     </div>
 
   <% else %>
     <div class="panel panel-default">
-      <div class="panel-heading">
-        Mems
-        <a class="close pull-right glyphicon glyphicon-menu-hamburger" data-toggle="collapse" href=".collapse-mems"></a>
-        <span id="controls">
-          <label type="button" title="Delete this mem" class="close glyphicon glyphicon-trash button" data-dismiss="alert" aria-label="Close" onclick="deleteNote(this, i)"></label>
-          <label type="button" title="Seen it, but show me this mem less" class="close glyphicon glyphicon-thumbs-down button" data-dismiss="alert" aria-label="Close" onclick="changePriority('down', i)"></label>
-          <label type="button" title="Seen it! Put this mem back in the stack" class="close glyphicon glyphicon-check button" data-dismiss="alert" aria-label="Close" onclick="seenIt(this, i)"></label>
-          <label type="button" title="Seen it, and show me this mem more" class="close glyphicon glyphicon-thumbs-up button" data-dismiss="alert" aria-label="Close" onclick="changePriority('up', i)"></label>
-        </span>
-      </div>
-      <% @notes.each_with_index do |note, i| %>
-        <div id="note<%= i %>" <% if i != 0%> style="display:none" <%end%> class="panel-body collapse in collapse-mems" aria-expanded="true" aria-controls="collapse">
-
-          <span class="label label-info date-label pull-left"><%= note.tags[0] %></span>
-          <%= raw auto_link(sanitize note.body.gsub(/\n/, '<br />')) %>
-          <% id_count += 1 %>
-        </div>
-
-      <% end %>
-      <div class="final panel-body collapse in collapse-mems" id="note<%= id_count %>" style="display:none" >
-        <h4> Seen all your current mems </h4>
-        <p class="no-top">Come back in a little while for more Mems!</p>
-        <p> Or feel free to add some new ones below </p>
-      </div>
-    <% end %>
+    <div class="panel-heading">
+    Mems
+    <a class="close pull-right glyphicon glyphicon-menu-hamburger" data-toggle="collapse" href=".collapse-mems"></a>
+    <span id="controls">
+    <label type="button" title="Delete this mem" class="close glyphicon glyphicon-trash button" data-dismiss="alert" aria-label="Close" onclick="deleteNote(this, i)"></label>
+    <label type="button" title="Seen it, but show me this mem less" class="close glyphicon glyphicon-thumbs-down button" data-dismiss="alert" aria-label="Close" onclick="changePriority('down', i)"></label>
+    <label type="button" title="Seen it! Put this mem back in the stack" class="close glyphicon glyphicon-check button" data-dismiss="alert" aria-label="Close" onclick="seenIt(this, i)"></label>
+    <label type="button" title="Seen it, and show me this mem more" class="close glyphicon glyphicon-thumbs-up button" data-dismiss="alert" aria-label="Close" onclick="changePriority('up', i)"></label>
+    </span>
     </div>
+    <% @notes.each_with_index do |note, i| %>
+      <div id="note<%= i %>" <% if i != 0%> style="display:none" <%end%> class="panel-body collapse in collapse-mems" aria-expanded="true" aria-controls="collapse">
+
+      <span class="label label-info date-label pull-left"><%= note.tags[0] %></span>
+      <%= raw auto_link(sanitize note.body.gsub(/\n/, '<br />')) %>
+      <% id_count += 1 %>
+      </div>
+
+    <% end %>
+    <div class="final panel-body collapse in collapse-mems" id="note<%= id_count %>" style="display:none" >
+    <h4> Seen all your current mems </h4>
+    <p class="no-top">Come back in a little while for more Mems!</p>
+    <p> Or feel free to add some new ones below </p>
+    </div>
+  <% end %>
+  </div>
+-->

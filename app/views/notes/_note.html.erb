@@ -1,0 +1,12 @@
+
+<div id="<%= note.id %>" class="panel-body collapse in collapse-mems" aria-expanded="true" aria-controls="collapse">
+  <li class="list-group-item">
+    <span id="controls">
+      <label type="button" title="Delete this mem" class="close glyphicon glyphicon-trash button" data-dismiss="alert" aria-label="Close" onclick="deleteNote(this, <%= note.id %>)"></label>
+      <label type="button" title="Seen it, but show me this mem less" class="close glyphicon glyphicon-thumbs-down button" data-dismiss="alert" aria-label="Close" onclick="changePriority('down', <%= note.id %>)"></label>
+      <label type="button" title="Seen it, and show me this mem more" class="close glyphicon glyphicon-thumbs-up button" data-dismiss="alert" aria-label="Close" onclick="changePriority('up', <%= note.id %>)"></label>
+    </span>
+    <span class="label label-info date-label pull-left"><%= note.tags[0] %></span>
+    <%= raw auto_link(sanitize note.body.gsub(/\n/, '<br />')) %>
+  </li>
+</div>

@@ -2,8 +2,6 @@
   <div class="alert alert-success alert-fixed" id="success" role="alert" style="display:none"><%= flash[:notice] %></div>
 <% end %>
 
-<%= render 'layouts/notesMems' %>
-
 <% if @dates.any? %>
   <%= render '/layouts/notesDates' %> 
 <% end %>
@@ -55,13 +53,4 @@ function seenIt(element, id) {
   $.get('/notes/' + noteArray[id] + '/seen');
 } 
 
-function changePriority(direction, id) {
-  advanceItem();
-  $.get('notes/' + noteArray[id] + '/priority', {"direction": direction});
-}
-
-function deleteNote(element, id) {
-  advanceItem();
-  $.get('/notes/' + noteArray[id] + '/delete_mem');
-}
 </script>

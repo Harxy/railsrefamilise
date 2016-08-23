@@ -3,15 +3,16 @@ Rails.application.routes.draw do
   get "/auth/auth0/callback" => "auth0#callback"
   get "/auth/failure" => "auth0#failure"
   get '/auth/logout' => "auth0#logout"
+  get '/stack/data_output' => 'stack#data_output'
   resources :auth0
   resources :notes
   resources :history
+  resources :stack
   get '/notes/:id/seen' => 'notes#seen'
-  get '/notes/:id/remove' => 'notes#delete_from_view'
   get '/notes/:id/delete_mem' => 'notes#destroy'
   get '/notes/:id/push_back' => 'notes#push_back'
   get '/notes/:id/push_back_more' => 'notes#push_back_more'
-  get '/notes/:id/priority' => 'notes#change_priority'
+  get '/stack/:id/priority' => 'stack#change_priority'
   get '/' => "notes#index"
   get '/blog' => "blogs#index"
   get '/user_info/seen_it' => "user_info#seen_it"
